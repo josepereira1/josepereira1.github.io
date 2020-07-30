@@ -24,7 +24,7 @@
             <a href="#email"><span class="white-text email">joseandremp@gmail.com</span></a>
             <li><a href="#"><i class="material-icons grey-text text-darken-3">home</i>Home</a>
           </li>
-          <li><a href="pages/projects.html"><i class="material-icons grey-text text-darken-3">chat</i>Projects</a></li>
+          <li><a id="sideNavlinkProjects" href="projects"><i class="material-icons grey-text text-darken-3">chat</i>Projects</a></li>
           <li><a href="https://github.com/josepereira1"><i class="material-icons grey-text text-darken-3">developer_mode</i>GitHub</a></li>
           <li><a href="https://www.linkedin.com/in/jos%C3%A9-pereira-b18750164/"><i class="material-icons grey-text text-darken-3">library_books</i>LinkedIn</a></li>
           <!-- <li><a href="https://meta.stackexchange.com/users/713959/jos%c3%a9-pereira?tab=profile"><i class="material-icons grey-text text-darken-3">chat</i>Stack Exchange</a></li>-->
@@ -49,7 +49,7 @@
                         <a href="#", class="blue-grey-text text-darken-4">Home</a>
                     </li>
                     <li>
-                        <a href="pages/projects.html", class="blue-grey-text text-darken-4">Projects</a>
+                        <a id="linkProjects" href="#projects", class="blue-grey-text text-darken-4">Projects</a>
                     </li>
                     <li>
                         <a href="https://github.com/josepereira1", class="blue-grey-text text-darken-4">GitHub</a>
@@ -78,9 +78,6 @@
 
     <div class="section no-pad-bot" id="index-banner">
         <div class="container">
-            
-            <br>
-            
             <!-- <h1 class="header center grey-text text-darken-3">"Learning is never too much"</h1>-->
             <div class="row center">
             <!--<a href="#user"><img style="width: 15%; height: 20%; opacity: 0.90;" src=""></a>-->
@@ -88,22 +85,42 @@
             <div class="row center">
                 <h3 class="header col s12 light">Welcome to my webpage, here you can find information about me and my projects</h3>
             </div>
-            
-            <br>
-          
-            <div class="row center">
-                <a href="pages/projects.html" class="z-depth-5 btn-large waves-effect waves-light grey darken-3">
-            PROJECTS</a>
-            </div>
         </div>
     </div>
 
-    <br><br>
+    <br>
 
     <div class="container">
         <div class="row center">
             <h4 id="about-me" class="center">About me</h4>
             <p>My name is José Pereira, I am 22 years old, from Portugal and live in <a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a>. My main goals are become the development of my capacities about different programming languages and learn more about software design and development.</p>
+        </div>
+
+        <br>
+        <div id="projects">
+            <div class="row">
+                <div class="col s12">
+                    <h4 id="message" class="center">Projects (github repositories) </h4>
+                    <table id="projectsTable" class="centered highlight">
+                        <thead>
+                            <tr>
+                                <th>name</th>
+                                <th>last update</th>
+                                <th>language (most used)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="center-align">
+                <ul id="pagination" class="pagination">
+                </ul>
+                </div>
+            </div>
         </div>
         
         <br>
@@ -131,7 +148,7 @@
                         <td><a href="https://esvv.edu.pt/ensino-secundario/cursos-cientifico-humanisticos-2/">Sciences and technologies</a></td>
                         <td><a href="https://esvv.edu.pt/">High school of Vila Verde</a></td>
                         <td>Finished</td>
-                        <td> -- </td>
+                        <td>2012 to 2015 </td>
                     </tr>
                   
                     <tr>
@@ -206,7 +223,7 @@
                         <td><a href="https://br.linkedin.com/company/refood-braga-100-">REFOOD Braga 100%</a></td>
                         <td>Student Volunteer</td>
                         <td>13 February 2020</td>
-                        <td>       -        </td>
+                        <td>not finished</td>
                     </tr>
                     
                     <tr>
@@ -219,19 +236,8 @@
             </table>
     </div>
 </div>
-
-<br><br>
-
-<div class="container">
-    <h3 class="center">It's not too late to send your name to Mars!</h3>
-    <p class="flow-text center">Click <a href="https://mars.nasa.gov/participate/send-your-name/">here</a> to register your name!</p>
-    <iframe width="980" height="410" src="https://mars.nasa.gov/layout/embed/send-your-name/mars2020/certificate/?cn=333302633289" frameborder="0"></iframe>
-</div>
-      
-<br><br>
-
 </body>
-
+<br><br>
 <footer class="page-footer blue-grey darken-2">
     <div class="container">
         <div class="row center">
@@ -287,4 +293,7 @@
     </script>
 
     <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
+    <script src="js/app.js"></script>
+    <script>numberPages(1);</script>
 </html>
