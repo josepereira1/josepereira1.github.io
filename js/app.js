@@ -3,60 +3,65 @@ var lastPage
 var numberPages
 
 function getProjectsByPage(page){
-    if(page != 0 || page != numberPages){
-        $(document).ready(function(){
-            $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
-                jsonData = data
-                let content = ""
-
-                minIndex = (page-1)*maxProjectsPerPage
-                maxIndex = (page-1)*maxProjectsPerPage + (maxProjectsPerPage-1)
-
-                $('#projectTableContent').html("")
-                $("#pag" + page).addClass("disabled")
-                $("#pag" + lastPage).removeClass("disabled")
-
-                for(i = minIndex; i <= maxIndex; i++){
-                    last_update = jsonData[i].updated_at.split(" ")
-                    if(jsonData[i].language)language = jsonData[i].language 
-                    else language = " -- "
-                    content = "<tr onclick=location.href=\"" + jsonData[i].html_url + "\"><td>" + jsonData[i].name + "</td><td>" +  last_update[0] + "</td><td>" + language + "</td></tr>";
-                    $('#projectsTable').append(content);
-                }
-
-                $('#back').removeClass('disabled')
-                $('#linkBack').removeClass('disabled')
-                $('#next').removeClass('disabled')
-                $('#linkNext').removeClass('disabled')
-
-                if(page == 1){
-                    $('#back').addClass('disabled')
-                    $('#linkBack').addClass('disabled')
-                    $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
-                }else if (page == numberPages){
-                    $('#next').addClass('disabled')
-                    $('#linkNext').addClass('disabled')
-                    $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
-                }else{
-                    $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
-                    $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
-                }
-
-                lastPage = page
-            }).fail(function(){
-                $("#sideNavlinkProjects").attr("href","https://github.com/josepereira1")
-                $("#linkProjects").attr("href","https://github.com/josepereira1")
-                $("#projects").html("")
-            })
-        });
-    }
-}
-
-function numberPages(page){
+    if(page != 0 || page != numberPages) return 
+    
     $(document).ready(function(){
         $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
             jsonData = data
             let content = ""
+
+            minIndex = (page-1)*maxProjectsPerPage
+            maxIndex = (page-1)*maxProjectsPerPage + (maxProjectsPerPage-1)
+
+            $('#projectTableContent').html("")
+            $("#pag" + page).addClass("disabled")
+            $("#pag" + lastPage).removeClass("disabled")
+
+            for(i = minIndex; i <= maxIndex; i++){
+                last_update = jsonData[i].updated_at.split(" ")
+                if(jsonData[i].language)language = jsonData[i].language 
+                else language = " -- "
+                content = "<tr onclick=location.href=\"" + jsonData[i].html_url + "\"><td>" + jsonData[i].name + "</td><td>" +  last_update[0] + "</td><td>" + language + "</td></tr>";
+                $('#projectsTable').append(content);
+            }
+
+            $('#back').removeClass('disabled')
+            $('#linkBack').removeClass('disabled')
+            $('#next').removeClass('disabled')
+            $('#linkNext').removeClass('disabled')
+
+            if(page == 1){
+                $('#back').addClass('disabled')
+                $('#linkBack').addClass('disabled')
+                $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
+            }else if (page == numberPages){
+                $('#next').addClass('disabled')
+                $('#linkNext').addClass('disabled')
+                $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
+            }else{
+                $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
+                $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
+            }
+
+            lastPage = page
+        }).fail(function(){
+            $("#sideNavlinkProjects").css('display', 'none')
+            $("#linkProjects").css('display', 'none')
+            $("#projects").html("")
+        })
+    });
+}
+
+function numberPages(page){
+    
+    if(page <= 0 || page > numberPages) return
+
+    $(document).ready(function(){
+        $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
+            jsonData = data
+            let content = ""
+
+            console.log(jsonData)
 
             numberPages = Math.round(jsonData.length / maxProjectsPerPage);
 
@@ -84,14 +89,16 @@ function numberPages(page){
             lastPage = page
 
         }).fail(function(){
-            $("#sideNavlinkProjects").attr("href","https://github.com/josepereira1")
-            $("#linkProjects").attr("href","https://github.com/josepereira1")
+            $("#sideNavlinkProjects").css('display', 'none')
+            $("#linkProjects").css('display', 'none')
             $("#projects").html("")
         })
     });
 }
 
 function skills(){
+    var topValue = 5 
+
     //  in development
     $(document).ready(function(){
         $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
@@ -102,16 +109,30 @@ function skills(){
                 console.log(jsonData[i].languages_url)
                 if(jsonData[i].languages_url){
                     $.get(jsonData[i].languages_url).done(function(data){
-                        $.each(data, function(){
-                            console.log(data)
-                            console.log(this)
-                        })
+                        for(key in data){
+                            skills[key] = data[key]
+                        }
                     })
                 }
             }
+
+            let arr = []
+
+            let big = -1
+
+            for(i = 0; i < topValue; i++){
+                for(key in skills){
+                    console.log(big)
+                    if(skills[key] > big && !arr.includes(key)){
+                        big = skills[key]
+                        arr.push(key)
+                    }
+                }
+            }
+            console.log(arr)
         }).fail(function(){
-            $("#sideNavlinkProjects").attr("href","https://github.com/josepereira1")
-            $("#linkProjects").attr("href","https://github.com/josepereira1")
+            $("#sideNavlinkProjects").css('display', 'none')
+            $("#linkProjects").css('display', 'none')
             $("#projects").html("")
         })
     });
