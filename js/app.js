@@ -189,24 +189,11 @@ function aboutme(){
         $.get("https://api.github.com/users/josepereira1") .done(function(data) {
             console.log("GET https://api.github.com/users/josepereira1")
             var profile = data
-
-            console.log(profile.bio)
             
-            $('#bio').append(profile.bio)
+            $('#location').append(profile.location)
+            $('#publicrepos').append(profile.public_repos)
+            
         }).fail(function(){
         })
     });
 }
-
-
-/*$(window).on("resize", function(){
-    if(window.innerWidth < 1200){
-        //$('#about-me-table').removeClass('s')
-        $('#about-me-table').addClass('s12')
-        //$('#about-me-img').css('display', 'none')
-    }else{
-        $('#about-me-table').removeClass('s12')
-        //$('#about-me-table').addClass('s9')
-        //$('#about-me-img').css('display', 'block')
-    }
-});*/
