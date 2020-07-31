@@ -129,13 +129,28 @@ function numberPages(page){
     });
 }
 
-function calculateAge() { // birthday is a date
+function calculateAge() {
     let year = 1997, month = 6, day = 19, hour = 14, min = 15;
     var ageDifMs = Date.now() - new Date(year, month, day, hour, min, 0, 0);
-    var ageDate = new Date(ageDifMs); // miliseconds from epoch
-
+    var ageDate = new Date(ageDifMs);
     $('#age').html(Math.abs(ageDate.getUTCFullYear() - 1970) + ' years')
 }
+
+function aboutme(){
+    $(document).ready(function(){
+        $.get("https://api.github.com/users/josepereira1") .done(function(data) {
+            console.log("GET https://api.github.com/users/josepereira1")
+            var profile = data
+            
+            $('#location').append(profile.location)
+            $('#publicrepos').append(profile.public_repos)
+            
+        }).fail(function(){
+        })
+    });
+}
+
+//  future things ------------------------------------------------------------------------------
 
 function skills(){
     if(dev) return ;
@@ -180,20 +195,6 @@ function skills(){
             $("#sideNavlinkProjects").css('display', 'none')
             $("#linkProjects").css('display', 'none')
             $("#projects").html("")
-        })
-    });
-}
-
-function aboutme(){
-    $(document).ready(function(){
-        $.get("https://api.github.com/users/josepereira1") .done(function(data) {
-            console.log("GET https://api.github.com/users/josepereira1")
-            var profile = data
-            
-            $('#location').append(profile.location)
-            $('#publicrepos').append(profile.public_repos)
-            
-        }).fail(function(){
         })
     });
 }
