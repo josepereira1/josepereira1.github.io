@@ -144,8 +144,12 @@ function aboutme(){
             
             $('#location').append(profile.location)
             $('#publicrepos').append(profile.public_repos)
+            $('#name').append(profile.name)
             
         }).fail(function(){
+            $('#location').append('---')
+            $('#publicrepos').append('---')
+            $('#name').append('José Pereira')
         })
     });
 }
