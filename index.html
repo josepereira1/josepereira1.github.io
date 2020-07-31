@@ -15,11 +15,11 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
-<body onload="calculateAge();numberPages(1);">
+<body onload="aboutme();calculateAge();numberPages(1);">
     <ul id="slide-out" class="sidenav hide-on-large-only">
         <li><div class="user-view">
             <div class="background"><img src="images/background.jpg"></div>
-            <!--<a href="#user"><img style="width: 30%; height: 30%; opacity: 1;" class="circle" src="images/"></a>-->
+            <a href="#user"><img style="width: 25%; height: 25%; opacity: 1;" class="circle" src="https://avatars1.githubusercontent.com/u/31769547?v=4"></a>
             <a href="#name"><span class="white-text name">José Pereira</span></a>
             <a href="#email"><span class="email"><a class="white-text" href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></span></a>
             <li><a href="#"><i class="material-icons grey-text text-darken-3">home</i>Home</a>
@@ -91,11 +91,66 @@
     <br>
 
     <div class="container">
-        <div class="row center">
-            <h4 id="about-me" class="center">About me</h4>
-            <p id="paragraph-about-me"></p>
+        <h4 class="center">About me</h4>
+        <div class="row">
+            <div class="col s3">
+                <div class="center-align">
+                    <img id="about-me-img" class="" src="https://media-exp1.licdn.com/dms/image/C5603AQG8Ot6adcM2IA/profile-displayphoto-shrink_200_200/0?e=1601510400&v=beta&t=IDbX5xGa9xt9Jk6LkcQUpOWvR9GQ0WwQcM-cl85u5II">
+                </div>
+            </div>
+            <div id="about-me-table" class="col s9">
+                <table class="centered highlight">
+                    <tr>
+                        <th>First name(s):</th>
+                        <td id="firstname">José André</td>
+                    </tr>
+                    <tr>
+                        <th>Last name:</th>
+                        <td id="lastname">Pereira</td>
+                    </tr>
+                    <tr>
+                        <th>Institution:</th>
+                        <td id="institution"><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
+                    </tr>
+                    <tr>
+                        <th>Course:</th>
+                        <td id="course"><a href="https://miei.di.uminho.pt">Integrated Master's, Computer Software Engineering, 4th year</a></td>
+                    </tr>
+                    <tr>
+                        <th>Date of birth:</th>
+                        <td id="birthday">19/06/1997</td>
+                    </tr>
+                    <tr>
+                        <th>Age:</th>
+                        <td id="age"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender:</th>
+                        <td id="gender">Male</td>
+                    </tr>
+                    <tr>
+                        <th>Nationality:</th>
+                        <td id="nationality">Portuguese</td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td id="lives"><a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a></td>
+                    </tr>
+                    <tr>
+                        <th>Personal email (most recommended):</th>
+                        <td id="personalEmail"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>Institution email:</th>
+                        <td id="institutionEmail"><a href="mailto:a82880@alunos.uminho.pt">a82880@alunos.uminho.pt</a></td>
+                    </tr>
+                    <tr>
+                        <th>Contact (smartphone):</th>
+                        <td id="smartphone"><a href="tel:+351 915940392">+351 915940392</a></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
         <br>
         <div id="projects">
             <div class="row">
@@ -106,7 +161,8 @@
                             <tr>
                                 <th style="width: 40%">Name</th>
                                 <th style="width: 20%">Last update</th>
-                                <th style="width: 20%">Language (most used)</th>
+                                <th style="width: 10%">Language (most used)</th>
+                                <th style="width: 10%">Download (zip)</th>
                             </tr>
                         </thead>
                         <tbody id="projectTableContent">
@@ -127,12 +183,6 @@
         
         <div class="row">
             <h4 class="center">Educational</h4>
-          
-            <!--
-            <p><a href="https://miei.di.uminho.pt">Integrated Master's, Computer Software Engineering</a> course at <a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a> - 4th year</p>
-            <p><a href="https://miei.di.uminho.pt/plano_estudos.html#engenharia_de_aplicacoes">Aplication</a> and <a href="https://miei.di.uminho.pt/plano_estudos.html#engenharia_de_sistemas_de_software">Software Systems</a> Engineering - Master degree (forth and fifth years of the course)</p>
-            -->
-
             <table class="centered highlight">
                 <thead>
                     <tr>
@@ -167,7 +217,6 @@
                   
                 </tbody>
             </table>
-
         </div>
         
         <br><br>
