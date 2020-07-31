@@ -1,55 +1,68 @@
 var maxProjectsPerPage = 6
 var lastPage
 var numberPages
+var jsonData = {}
+var control = 1
 
 function getProjectsByPage(page){
-    if(page != 0 || page != numberPages) return 
+
+    if(page <= 0 || page > numberPages) return 
+
+    let controlFlag = 1
+
+    if(!jsonData || jsonData.length == 0){
+        $(document).ready(function(){
+            $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
+                console.log("GET https://api.github.com/users/josepereira1/repos")
+                control = 50
+                jsonData = data
+            }).fail(function(){
+                controlFlag = 0
+                $("#sideNavlinkProjects").css('display', 'none')
+                $("#linkProjects").css('display', 'none')
+                $("#projects").html("")
+            })
+        });
+    }
+
+    if(controlFlag == 1 || jsonData.length > 0){
+        let content = ""
     
-    $(document).ready(function(){
-        $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
-            jsonData = data
-            let content = ""
+        minIndex = (page-1)*maxProjectsPerPage
+        maxIndex = (page-1)*maxProjectsPerPage + (maxProjectsPerPage-1)
 
-            minIndex = (page-1)*maxProjectsPerPage
-            maxIndex = (page-1)*maxProjectsPerPage + (maxProjectsPerPage-1)
+        $('#projectTableContent').html("")
+        $("#pag" + page).addClass("disabled")
+        $("#pag" + lastPage).removeClass("disabled")
 
-            $('#projectTableContent').html("")
-            $("#pag" + page).addClass("disabled")
-            $("#pag" + lastPage).removeClass("disabled")
+        for(i = minIndex; i <= maxIndex; i++){
+            last_update = jsonData[i].updated_at.split(" ")
+            if(jsonData[i].language)language = jsonData[i].language 
+            else language = " -- "
+            content = "<tr onclick=location.href=\"" + jsonData[i].html_url + "\"><td>" + jsonData[i].name + "</td><td>" +  last_update[0] + "</td><td>" + language + "</td></tr>";
+            $('#projectsTable').append(content);
+        }
 
-            for(i = minIndex; i <= maxIndex; i++){
-                last_update = jsonData[i].updated_at.split(" ")
-                if(jsonData[i].language)language = jsonData[i].language 
-                else language = " -- "
-                content = "<tr onclick=location.href=\"" + jsonData[i].html_url + "\"><td>" + jsonData[i].name + "</td><td>" +  last_update[0] + "</td><td>" + language + "</td></tr>";
-                $('#projectsTable').append(content);
-            }
+        $('#back').removeClass('disabled')
+        $('#linkBack').removeClass('disabled')
+        $('#next').removeClass('disabled')
+        $('#linkNext').removeClass('disabled')
 
-            $('#back').removeClass('disabled')
-            $('#linkBack').removeClass('disabled')
-            $('#next').removeClass('disabled')
-            $('#linkNext').removeClass('disabled')
+        if(page == 1){
+            $('#back').addClass('disabled')
+            $('#linkBack').addClass('disabled')
+            $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
+        }else if (page == numberPages){
+            $('#next').addClass('disabled')
+            $('#linkNext').addClass('disabled')
+            $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
+        }else{
+            $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
+            $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
+        }
 
-            if(page == 1){
-                $('#back').addClass('disabled')
-                $('#linkBack').addClass('disabled')
-                $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
-            }else if (page == numberPages){
-                $('#next').addClass('disabled')
-                $('#linkNext').addClass('disabled')
-                $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
-            }else{
-                $('#linkBack').attr('onclick', 'getProjectsByPage(' + (page - 1) + ')')
-                $('#linkNext').attr('onclick', 'getProjectsByPage(' + (page + 1) + ')')
-            }
-
-            lastPage = page
-        }).fail(function(){
-            $("#sideNavlinkProjects").css('display', 'none')
-            $("#linkProjects").css('display', 'none')
-            $("#projects").html("")
-        })
-    });
+        lastPage = page
+    }
 }
 
 function numberPages(page){
@@ -60,8 +73,6 @@ function numberPages(page){
         $.get("https://api.github.com/users/josepereira1/repos") .done(function(data) {
             jsonData = data
             let content = ""
-
-            console.log(jsonData)
 
             numberPages = Math.round(jsonData.length / maxProjectsPerPage);
 
@@ -96,6 +107,14 @@ function numberPages(page){
     });
 }
 
+function calculateAge() { // birthday is a date
+    let year = 1997, month = 6, day = 19, hour = 14, min = 15;
+    var ageDifMs = Date.now() - new Date(year, month, day, hour, min, 0, 0);
+    var ageDate = new Date(ageDifMs); // miliseconds from epoch
+
+    $('#paragraph-about-me').html('My name is José Pereira, I am '+ Math.abs(ageDate.getUTCFullYear() - 1970) + ' years old, from Portugal and live in <a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a>. My main goals are become the development of my capacities about different programming languages and learn more about software design and development.')
+}
+
 function skills(){
     var topValue = 5 
 
@@ -106,11 +125,10 @@ function skills(){
             var skills = {}
 
             for(i = 0; i < jsonData.length; i++){
-                console.log(jsonData[i].languages_url)
                 if(jsonData[i].languages_url){
                     $.get(jsonData[i].languages_url).done(function(data){
                         for(key in data){
-                            skills[key] = data[key]
+                            skills[key] = skills[key] + data[key]
                         }
                     })
                 }
@@ -120,15 +138,18 @@ function skills(){
 
             let big = -1
 
+            console.log(skills)
+
             for(i = 0; i < topValue; i++){
                 for(key in skills){
-                    console.log(big)
                     if(skills[key] > big && !arr.includes(key)){
                         big = skills[key]
+                        console.log(big)
                         arr.push(key)
                     }
                 }
             }
+
             console.log(arr)
         }).fail(function(){
             $("#sideNavlinkProjects").css('display', 'none')
