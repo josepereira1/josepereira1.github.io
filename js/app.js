@@ -56,7 +56,7 @@ function getProjectsByPage(page){
 
             if(jsonData[i].language)language = jsonData[i].language 
             else language = " -- "
-            content = "<tr onclick=location.href=\"" + jsonData[i].html_url + '"><td tyle="word-break: break-all;">' + jsonData[i].name + "</td><td>" + date + ' ' + hour + 'h' + min + 'min' + "</td><td>" + language + '</td><td><a href="https://api.github.com/repos/josepereira1/' + jsonData[i].name + '/zipball/master">' + downloadIcon + '</a></td></tr>';
+            content = "<tr onclick=location.href=\"" + jsonData[i].html_url + '"><td style="word-break: break-all;">' + jsonData[i].name + "</td><td>" + date + ' ' + hour + 'h' + min + 'min' + "</td><td>" + language + '</td><td><a href="https://api.github.com/repos/josepereira1/' + jsonData[i].name + '/zipball/master">' + downloadIcon + '</a></td></tr>';
             $('#projectsTable').append(content);
         }
 
