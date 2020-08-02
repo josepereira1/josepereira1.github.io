@@ -21,8 +21,8 @@ function getProjectsByPage(page){
 
     if(!jsonData || jsonData.length == 0){
         $(document).ready(function(){
-            $.get('https://api.github.com/users/' + githubUsername + '/repos') .done(function(data) {
-                console.log('GET https://api.github.com/users/' + githubUsername + '/repos')
+            $.get('https://api.github.com/users/' + githubUsername + '/repos?sort=updated') .done(function(data) {
+                console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=updated')
                 jsonData = data
             }).fail(function(){
                 controlFlag = 0
@@ -88,8 +88,8 @@ function numberPages(page){
     if(page <= 0 || page > numberPages) return
 
     $(document).ready(function(){
-        $.get('https://api.github.com/users/' + githubUsername + '/repos') .done(function(data) {
-            console.log('GET https://api.github.com/users/' + githubUsername + '/repos')
+        $.get('https://api.github.com/users/' + githubUsername + '/repos?sort=updated') .done(function(data) {
+            console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=updated')
             jsonData = data
             let content = ""
 
