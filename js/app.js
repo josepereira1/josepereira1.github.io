@@ -10,6 +10,33 @@ const year = 1997, month = 6, day = 19;
 //  used to not spend unnecessary requests in development (aboute me information, projects requested to github, because exists max limit of requests)
 var dev = false
 
+/**
+ * load information necessary to create projects table
+ * @param {String} comparator comparator is the sort method (options: created, updated, pushed, full_name)
+ */
+function loadProjects(comparator){
+    console.log('loadProjects')
+    if(dev === true) return ;
+
+    $(document).ready(function(){
+        $.get('https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator).done(function(data) {
+            console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator)
+            githubProjectsJson = data
+            numberPages = calculateNumberPages();
+            createPagination(numberPages, 1);
+            createProjectsTableAndPaginationOfPage(1)
+        }).fail(function(){
+            $("#sideNavlinkProjects").css('display', 'none')
+            $("#linkProjects").css('display', 'none')
+            $("#projects").html("")
+        })
+    });
+}
+
+/**
+ * Convert date in format (YYYY-MM-DDTHH:MM:SSZ) to (YYYY-MM-DD HHhMMmin) (e.g. 2020-05-13T08:21:42Z to 2020-05-13 08h21min)
+ * @param {String} dateFormat date in format YYYY-MM-DDTHH:MM:SSZ
+ */
 function parseDate(dateFormat){
     substr = dateFormat.split('T')
     date = substr[0]
@@ -21,8 +48,12 @@ function parseDate(dateFormat){
     return date + ' ' + hour + 'h' + min + 'min'
 }
 
-function getProjectsByPage(page){
-    console.log('getProjectsByPage')
+/**
+ * Create projects table and update pagination of page.
+ * @param {Number} page actual page
+ */
+function createProjectsTableAndPaginationOfPage(page){
+    console.log('createProjectsTableAndPaginationOfPage')
     
     if(dev === true || page <= 0 || page > numberPages) return 
 
@@ -67,40 +98,16 @@ function updatePagination(actualPage){
     if(actualPage == 1){
         $('#back').addClass('disabled')
         $('#linkBack').attr('onclick', '')
-        $('#linkNext').attr('onclick', 'getProjectsByPage(' + (actualPage + 1) + ')')
+        $('#linkNext').attr('onclick', 'createProjectsTableAndPaginationOfPage(' + (actualPage + 1) + ')')
     }else if (actualPage == numberPages){
         $('#next').addClass('disabled')
         $('#linkNext').attr('onclick', '')
-        $('#linkBack').attr('onclick', 'getProjectsByPage(' + (actualPage - 1) + ')')
+        $('#linkBack').attr('onclick', 'createProjectsTableAndPaginationOfPage(' + (actualPage - 1) + ')')
     }else{
-        $('#linkBack').attr('onclick', 'getProjectsByPage(' + (actualPage - 1) + ')')
-        $('#linkNext').attr('onclick', 'getProjectsByPage(' + (actualPage + 1) + ')')
+        $('#linkBack').attr('onclick', 'createProjectsTableAndPaginationOfPage(' + (actualPage - 1) + ')')
+        $('#linkNext').attr('onclick', 'createProjectsTableAndPaginationOfPage(' + (actualPage + 1) + ')')
     }
 }
-
-function loadProjects(comparator, firstTime){
-    console.log('loadProjects')
-    if(dev === true) return ;
-
-    $(document).ready(function(){
-        $.get('https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator).done(function(data) {
-            console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator)
-            githubProjectsJson = data
-
-            numberPages = calculateNumberPages();
-            if(firstTime === true) pagination(numberPages, 1);
-            else updatePagination(lastPage)
-
-            getProjectsByPage(1)
-
-        }).fail(function(){
-            $("#sideNavlinkProjects").css('display', 'none')
-            $("#linkProjects").css('display', 'none')
-            $("#projects").html("")
-        })
-    });
-}
-
 function calculateNumberPages(){
     console.log('calculateNumberPages')
     let decimalValue = (githubProjectsJson.length / maxProjectsPerPage)
@@ -113,17 +120,18 @@ function calculateNumberPages(){
     return tmp
 }
 
-function pagination(numberPages, page){
+function createPagination(numberPages, page){
     console.log('pagination')
+    $('pagination').html('')
     $('#pagination').append('<li id="back" class="waves-effect disabled"><a id="linkBack" href="#!"><i class="material-icons">chevron_left</i></a></li>')
 
     for(i = 1; i <= numberPages; i++){
-        if(i == page) content = "<li id=\"pag" + i + "\" class=\"waves-effect disabled\"><a onclick=getProjectsByPage(" + i + ")>" + i +"</a></li>";
-        else content = "<li id=\"pag" + i + "\" class=\"waves-effect\"><a onclick=getProjectsByPage(" + i + ")>" + i +"</a></li>";
+        if(i == page) content = "<li id=\"pag" + i + "\" class=\"waves-effect disabled\"><a onclick=createProjectsTableAndPaginationOfPage(" + i + ")>" + i +"</a></li>";
+        else content = "<li id=\"pag" + i + "\" class=\"waves-effect\"><a onclick=createProjectsTableAndPaginationOfPage(" + i + ")>" + i +"</a></li>";
         $('#pagination').append(content);
     }
 
-    $('#pagination').append('<li id="next" class="waves-effect"><a id="linkNext" onclick="getProjectsByPage(' + (page + 1) + ')" href="#!"><i class="material-icons">chevron_right</i></a></li>')
+    $('#pagination').append('<li id="next" class="waves-effect"><a id="linkNext" onclick="createProjectsTableAndPaginationOfPage(' + (page + 1) + ')" href="#!"><i class="material-icons">chevron_right</i></a></li>')
 }
 
 function calculateAge() {

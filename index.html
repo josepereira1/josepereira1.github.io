@@ -15,7 +15,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
 </head>
 
-<body onload="aboutme();calculateAge();loadProjects('created', true);">
+<body onload="aboutme();calculateAge();loadProjects('created');">
     <ul id="slide-out" class="sidenav hide-on-large-only">
         <li><div class="user-view">
             <div class="background"><img src="images/background.jpg"></div>
@@ -159,10 +159,10 @@
                     <h4 id="message" class="center">Projects</h4>
                     <h6 id="message" class="center">(github repositories, can choose the ordering method)</h6>
                     <div class="row center">
-                        <button onclick="loadProjects('full_name', false)" type="button" class="btn btn-primary">NAME</button>
-                        <button onclick="loadProjects('created', false)" type="button" class="btn btn-primary">CREATION DATE</button>
-                        <button onclick="loadProjects('updated', false)" type="button" class="btn btn-primary">UPDATE DATE</button>
-                        <button onclick="loadProjects('pushed', false)" type="button" class="btn btn-primary">PUSHED DATE</button>
+                        <button onclick="loadProjects('full_name')" type="button" class="btn btn-primary">NAME</button>
+                        <button onclick="loadProjects('created')" type="button" class="btn btn-primary">CREATION DATE</button>
+                        <button onclick="loadProjects('updated')" type="button" class="btn btn-primary">UPDATE DATE</button>
+                        <button onclick="loadProjects('pushed')" type="button" class="btn btn-primary">PUSHED DATE</button>
                     </div>
                     <table id="projectsTable" class="centered highlight">
                         <thead>
