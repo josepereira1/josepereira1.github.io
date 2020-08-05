@@ -189,7 +189,7 @@ function adjustProfileImage(){
         $('#about-me-table').removeClass('s8')
         $('#about-me-table').addClass('s12')
     }else{
-        $('#about-me-img').html('<img style="display: block;margin-left: auto;margin-right: auto;width: 65%;border-radius: 5px;" src="' + profilePicture + '">')
+        $('#about-me-img').html('<img style="display: block;margin-left: auto;margin-right: auto;width: 55%;border-radius: 5px;" src="' + profilePicture + '">')
         $('#about-me-table').addClass('s8')
         $('#about-me-table').removeClass('s12')
     }
