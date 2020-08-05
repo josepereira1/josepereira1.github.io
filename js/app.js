@@ -131,7 +131,7 @@ function calculateNumberPages(){
 }
 
 function createPagination(numberPages, page){
-    $('pagination').html('')
+    $('#pagination').html('')
     $('#pagination').append('<li id="back" class="waves-effect disabled"><a id="linkBack" href="#!"><i class="material-icons">chevron_left</i></a></li>')
 
     for(i = 1; i <= numberPages; i++){
@@ -173,6 +173,26 @@ function aboutme(){
             $('#name').append('José Pereira')
         })
     });
+}
+
+$(window).on("resize", function(){
+    adjustProfileImage()
+});
+
+$(window).on("load", function(){
+    adjustProfileImage()
+});
+
+function adjustProfileImage(){
+    if(window.visualViewport.width < 1400){
+        $('#about-me-img').html('')
+        $('#about-me-table').removeClass('s8')
+        $('#about-me-table').addClass('s12')
+    }else{
+        $('#about-me-img').html('<img style="display: block;margin-left: auto;margin-right: auto;width: 50%;border-radius: 8px;" src="' + profilePicture + '">')
+        $('#about-me-table').addClass('s8')
+        $('#about-me-table').removeClass('s12')
+    }
 }
 
 //  future things ------------------------------------------------------------------------------
@@ -222,24 +242,4 @@ function skills(){
             $("#projects").html("")
         })
     });
-}
-
-$(window).on("resize", function(){
-    adjustProfileImage()
-});
-
-$(window).on("load", function(){
-    adjustProfileImage()
-});
-
-function adjustProfileImage(){
-    if(window.visualViewport.width < 1400){
-        $('#about-me-img').html('')
-        $('#about-me-table').removeClass('s8')
-        $('#about-me-table').addClass('s12')
-    }else{
-        $('#about-me-img').html('<img style="display: block;margin-left: auto;margin-right: auto;width: 50%;border-radius: 8px;" src="' + profilePicture + '">')
-        $('#about-me-table').addClass('s8')
-        $('#about-me-table').removeClass('s12')
-    }
 }
