@@ -33,7 +33,7 @@ function loadProjects(comparator){
 
     $(document).ready(function(){
         $.get('https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator).done(function(data) {
-            console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator)
+            //console.log('GET https://api.github.com/users/' + githubUsername + '/repos?sort=' + comparator)
             githubProjectsJson = data
             numberPages = calculateNumberPages();
             createPagination(numberPages, 1);
@@ -155,7 +155,7 @@ function aboutme(){
 
     $(document).ready(function(){
         $.get('https://api.github.com/users/' + githubUsername) .done(function(data) {
-            console.log('GET https://api.github.com/users/' + githubUsername)
+            //console.log('GET https://api.github.com/users/' + githubUsername)
             var profile = data
             
             if(profile.location != '')$('#location').append(profile.location)
@@ -205,7 +205,7 @@ function skills(){
     //  in development
     $(document).ready(function(){
         $.get('https://api.github.com/users/' + githubUsername + '/repos') .done(function(data) {
-            console.log('GET https://api.github.com/users/' + githubUsername + '/repos')
+            //console.log('GET https://api.github.com/users/' + githubUsername + '/repos')
             githubProjectsJson = data
             var skills = {}
 
