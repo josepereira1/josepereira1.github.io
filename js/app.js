@@ -23,6 +23,7 @@ var lastPage
 var numberPages
 var githubProjectsJson = {}
 
+document.getElementById("sideNavProfilePicture").src = profilePicture;
 
 /**
  * load information necessary to create projects table
