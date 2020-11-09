@@ -148,7 +148,17 @@ function calculateAge() {
     //  you could specify hour and minutes
     var ageDifMs = Date.now() - new Date(year, month, day, 0, 0, 0, 0);
     var ageDate = new Date(ageDifMs);
-    $('#age').html(Math.abs(ageDate.getUTCFullYear() - 1970) + ' years')
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970)
+    updateLinkDescription(age)
+    updateAboutMeAge(age)
+}
+
+function updateLinkDescription(age){
+    $('#meta-description').attr("content", 'Welcome to my webpage, here you can find information about me and my projects. My name is José Pereira, I am ' + age + ' years old, from Portugal and live in Braga. My main goals are become the development of my capacities about different programming languages and learn more about software design and development.')
+}
+
+function updateAboutMeAge(age){
+    $('#age').html(age + ' years')
 }
 
 function aboutme(){
