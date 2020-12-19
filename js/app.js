@@ -158,7 +158,8 @@ function updateLinkDescription(age){
 }
 
 function updateAboutMeAge(age){
-    $('#age').html(age + ' years')
+    $('#age-1').html(age + ' years')
+    $('#age-2').html(age + ' years')
 }
 
 function aboutme(){
@@ -169,19 +170,41 @@ function aboutme(){
             //console.log('GET https://api.github.com/users/' + githubUsername)
             var profile = data
             
-            if(profile.location != '')$('#location').append(profile.location)
-            else $('#location').append('Portugal')
+            if(profile.location != ''){
+                $('#location-1').append(profile.location)
+                $('#location-2').append(profile.location)
+            }
+            else {
+                $('#location-1').append('Portugal')
+                $('#location-2').append('Portugal')
+            }
             
-            if(profile.public_repos != '' && profile.public_repos != 0)$('#publicrepos').append(profile.public_repos)
-            else $('#publicrepos').append('---')
+            if(profile.public_repos != '' && profile.public_repos != 0){
+                $('#publicrepos-1').append(profile.public_repos)
+                $('#publicrepos-2').append(profile.public_repos)
+            }
+            else{
+                $('#publicrepos-1').append('---')
+                $('#publicrepos-2').append('---')
+            }
 
-            if(profile.name && profile.name != '')$('#name').append(profile.name)
-            else $('#name').append('José Pereira')
+
+            if(profile.name && profile.name != ''){
+                $('#name-1').append(profile.name)
+                $('#name-2').append(profile.name)
+            }
+            else {
+                $('#name-1').append('José Pereira')
+                $('#name-2').append('José Pereira')
+            }
             
         }).fail(function(){
-            $('#location').append('Portugal')
-            $('#publicrepos').append('---')
-            $('#name').append('José Pereira')
+            $('#location-1').append('Portugal')
+            $('#location-2').append('Portugal')
+            $('#publicrepos-1').append('---')
+            $('#publicrepos-2').append('---')
+            $('#name-1').append('José Pereira')
+            $('#name-1').append('José Pereira')
         })
     });
 }
@@ -195,14 +218,14 @@ $(window).on("load", function(){
 });
 
 function adjustProfileImage(){
-    if(window.visualViewport.width < 1400){
-        $('#about-me-img').html('')
-        $('#about-me-table').removeClass('s8')
-        $('#about-me-table').addClass('s12')
+    if(window.visualViewport.width < 1550){
+        $('#about-me-table-1').attr("style", "display:none")
+        $('#about-me-table-2').attr("style", "display:none")
+        $('#full-table').attr("style", "")
     }else{
-        $('#about-me-img').html('<img style="display: block;margin-left: auto;margin-right: auto;width: 55%;border-radius: 5px;" src="' + profilePicture + '">')
-        $('#about-me-table').addClass('s8')
-        $('#about-me-table').removeClass('s12')
+        $('#about-me-table-1').attr("style", "")
+        $('#about-me-table-2').attr("style", "")
+        $('#full-table').attr("style", "display:none")
     }
 }
 

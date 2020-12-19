@@ -16,7 +16,7 @@
 </head>
 
 <body onload="aboutme();calculateAge();loadProjects('created');">
-    <ul id="slide-out" class="sidenav hide-on-large-only">
+    <ul id="slide-out" class="sidenav">
         <li><div class="user-view">
             <div class="background"><img src="images/background.jpg"></div>
             <a href="#user"><img id="sideNavProfilePicture" style="width: 25%; height: 25%; opacity: 1;" class="circle"></a>
@@ -38,7 +38,7 @@
 
     <div class="row">
     	<div class="col l1 s12">
-            <a href="#" data-target="slide-out" class="hide-on-large-only btn-floating btn-large pulse sidenav-trigger"><i class="medium material-icons waves-effect waves-light text-grey text-darken-3">menu</i>
+            <a href="#" data-target="slide-out" class="btn-floating btn-large pulse sidenav-trigger"><i class="medium material-icons waves-effect waves-light text-grey text-darken-3">menu</i>
             </a>
         </div>
     	<nav class="transparent" role="navigation">
@@ -93,50 +93,97 @@
     <div class="container">
         <h4 class="center">About me</h4>
         <div class="row">
-            <div id="about-me-img" class="col s4">
-            </div>
-            <div id="about-me-table" class="col s8">
+            <!-- <div id="about-me-img" class="col s4"></div> -->
+            <div id="about-me-table-1" class="col s6">
                 <table class="centered highlight">
                     <tr>
                         <th class="centered">Name:</th>
-                        <td id="name"></td>
+                        <td id="name-1"></td>
                     </tr>
                     <tr>
-                        <th>Education:</th>
-                        <td id="institution"><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a> - <a href="https://miei.di.uminho.pt">Integrated Master's, Computer Software Engineering</a></td>
+                        <th>Institution:</th>
+                        <td id="institution-1"><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
                     </tr>
-                    <!--<tr>
+                    <tr>
+                        <th>Course:</th>
+                        <td id="course-1"><a href="https://miei.di.uminho.pt">Integrated Master's, Software Engineering</a></td>
+                    </tr>
+                    <tr>
                         <th>Public repositories (github):</th>
-                        <td id="publicrepos"></td>
-                    </tr>-->
-                    <tr>
-                        <th>Nationality:</th>
-                        <td id="nationality">Portuguese</td>
+                        <td id="publicrepos-1"></td>
                     </tr>
                     <tr>
                         <th>Age:</th>
-                        <td id="age"></td>
+                        <td id="age-1"></td>
                     </tr>
-                    <!--<tr>
+                </table>
+            </div>
+            <div id="about-me-table-2" class="col s6">
+                <table class="centered highlight">
+                    <tr>
+                        <th>Nationality:</th>
+                        <td id="nationality-1">Portuguese</td>
+                    </tr>
+                    <tr>
                         <th>Location:</th>
-                        <td id="location"></td>
-                    </tr>-->
+                        <td id="location-1"></td>
+                    </tr>
                     <tr>
                         <th>Address:</th>
-                        <td id="lives"><a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Portugal, Braga</a></td>
+                        <td id="lives-1"><a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a></td>
                     </tr>
                     <tr>
                         <th>Personal email (most recommended):</th>
-                        <td id="personalEmail"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
+                        <td id="personalEmail-1"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
                     </tr>
                     <tr>
                         <th>Institution email:</th>
-                        <td id="institutionEmail"><a href="mailto:a82880@alunos.uminho.pt">a82880@alunos.uminho.pt</a></td>
+                        <td id="institutionEmail-1"><a href="mailto:a82880@alunos.uminho.pt">a82880@alunos.uminho.pt</a></td>
                     </tr>
-                    <!-- <tr>
-                        <th>Contact (smartphone):</th>
-                        <td id="smartphone"><a href="tel:+351 915940392">+351 915940392</a></td>
-                    </tr> -->
+                </table>
+            </div>
+            <div id="full-table" class="col s12">
+                <table class="centered highlight">
+                    <tr>
+                        <th class="centered">Name:</th>
+                        <td id="name-2"></td>
+                    </tr>
+                    <tr>
+                        <th>Institution:</th>
+                        <td id="institution-2"><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
+                    </tr>
+                    <tr>
+                        <th>Course:</th>
+                        <td id="course-2"><a href="https://miei.di.uminho.pt">Integrated Master's, Software Engineering</a></td>
+                    </tr>
+                    <tr>
+                        <th>Public repositories (github):</th>
+                        <td id="publicrepos-2"></td>
+                    </tr>
+                    <tr>
+                        <th>Age:</th>
+                        <td id="age-2"></td>
+                    </tr>
+                    <tr>
+                        <th>Nationality:</th>
+                        <td id="nationality-2">Portuguese</td>
+                    </tr>
+                    <tr>
+                        <th>Location:</th>
+                        <td id="location-2"></td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td id="lives-2"><a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a></td>
+                    </tr>
+                    <tr>
+                        <th>Personal email (most recommended):</th>
+                        <td id="personalEmail-2"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
+                    </tr>
+                    <tr>
+                        <th>Institution email:</th>
+                        <td id="institutionEmail-2"><a href="mailto:a82880@alunos.uminho.pt">a82880@alunos.uminho.pt</a></td>
+                    </tr>
                 </table>
             </div>
         </div>
