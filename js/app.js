@@ -210,14 +210,14 @@ function aboutme(){
 }
 
 $(window).on("resize", function(){
-    adjustProfileImage()
+    adjustSizeTables()
 });
 
 $(window).on("load", function(){
-    adjustProfileImage()
+    adjustSizeTables()
 });
 
-function adjustProfileImage(){
+function adjustSizeTables(){
     if(window.visualViewport.width < 1550){
         $('#about-me-table-1').attr("style", "display:none")
         $('#about-me-table-2').attr("style", "display:none")
