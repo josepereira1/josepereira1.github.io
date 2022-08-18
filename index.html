@@ -1,351 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-    <meta id = "meta-description" name="description" content=""></meta>
-    <meta name="keywords" content="José Pereira, José André Martins Pereira, Software Development, Universidade do Minho, Braga, Portugal, Java, Web development, Application Architecture"></meta>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <title>José Pereira</title>
-
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
-</head>
-
-<body onload="aboutme();calculateAge();loadProjects('created');">
-    <ul id="slide-out" class="sidenav">
-        <li>
-            <div class="user-view">
-            <div class="background">
-                <img src="images/background.jpg">
-            </div>
-            <a href="#user"><img id="sideNavProfilePicture" style="width: 25%; height: 25%; opacity: 1;" class="circle"></a>
-            <a href="#name"><span class="white-text name">José Pereira</span></a>
-            <a href="#email"><span class="email"><a class="white-text" href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></span></a>
-            <li><a href="#"><i class="material-icons grey-text text-darken-3">home</i>Home</a>
-        </li>
-        <li>
-            <a id="sideNavlinkProjects" href="#projects"><i class="material-icons grey-text text-darken-3">chat</i>Projects</a>
-        </li>
-        <li>
-            <a href="https://github.com/josepereira1"><i class="material-icons grey-text text-darken-3">developer_mode</i>GitHub</a>
-        </li>
-        <li>
-            <a href="https://www.linkedin.com/in/jos%C3%A9-pereira-b18750164/"><i class="material-icons grey-text text-darken-3">library_books</i>LinkedIn</a>
-        </li>
-        <li>
-            <a href="#contacts"><i class="material-icons grey-text text-darken-3">contacts</i>Contacts</a>
-        </li>
-        <li>
-            <a href="#about-me"><i class="material-icons grey-text text-darken-3">info</i>About me</a>
-        </li>
-    </ul>
-
-    <div class="row">
-    	<div class="col l1 s12">
-            <a href="#" data-target="slide-out" class="btn-floating btn-large pulse sidenav-trigger"><i class="medium material-icons waves-effect waves-light text-grey text-darken-3">menu</i>
-            </a>
-        </div>
-    	<nav class="transparent" role="navigation">
-    	    <div class="nav-wrapper container">
-    	      	<a id="logo-container" href="#" class="brand-logo blue-grey-text text-darken-4 hide-on-med-and-down">José Pereira</a>
-    	      	<ul class="right hide-on-med-and-down">
-    	        	<li>
-                        <a href="#", class="blue-grey-text text-darken-4">Home</a>
-                    </li>
-                    <li>
-                        <a id="linkProjects" href="#projects", class="blue-grey-text text-darken-4">Projects</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/josepereira1", class="blue-grey-text text-darken-4">GitHub</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/jos%C3%A9-pereira-b18750164/", class="blue-grey-text text-darken-4">LinkedIn</a>
-                    </li>
-                    <li>
-                    <li>
-                        <a href="#contacts", class="blue-grey-text text-darken-4">Contacts</a>
-                    </li>
-                    <li>
-                        <a href="#about-me", class="blue-grey-text text-darken-4">About me</a>
-                    </li>
-    	      	</ul>
-    	    </div>
-    	</nav>
-    </div>
+  </head>
+  <body onload="updateAboutMe(); loadProjects('created');">
     <div class="container">
-        <h4 class="center">About me</h4>
-        <div class="row">
-            <div id="about-me-table-1" class="col s6">
-                <table class="centered highlight">
-                    <tr>
-                        <th class="centered">Name:</th>
-                        <td id="name-1"></td>
-                    </tr>
-                    <tr>
-                        <th>Age:</th>
-                        <td id="age-1"></td>
-                    </tr>
-                    <tr>
-                        <th>Nationality:</th>
-                        <td id="nationality-1">Portuguese</td>
-                    </tr>
-                    <tr>
-                        <th>Location:</th>
-                        <td id="location-1"></td>
-                    </tr>
-                </table>
-            </div>
-            <div id="about-me-table-2" class="col s6">
-                <table class="centered highlight">
-                    <tr>
-                        <th>Course:</th>
-                        <td id="course-1"><a href="https://miei.di.uminho.pt">Software Engineering at <a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></a></td>
-                    </tr>
-                    <tr>
-                        <th> Work:</th>
-                        <td>Backend Developer at <a href="https://www.linkedin.com/company/devoteam/mycompany/">Devoteam</a></td>
-                    </tr>
-                    <tr>
-                        <th>Public repositories (github):</th>
-                        <td id="publicrepos-1"></td>
-                    </tr>
-                    <tr>
-                        <th>Email:</th>
-                        <td id="personalEmail-1"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
-                    </tr>
-                </table>
-            </div>
-            <div id="full-table" class="col s12">
-                <table class="centered highlight">
-                    <tr>
-                        <th class="centered">Name:</th>
-                        <td id="name-2"></td>
-                    </tr>
-                    <tr>
-                        <th>Institution:</th>
-                        <td id="institution-2"><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
-                    </tr>
-                    <tr>
-                        <th>Course:</th>
-                        <td id="course-2"><a href="https://miei.di.uminho.pt">Integrated Master's, Software Engineering</a></td>
-                    </tr>
-                    <tr>
-                        <th>Public repositories (github):</th>
-                        <td id="publicrepos-2"></td>
-                    </tr>
-                    <tr>
-                        <th>Age:</th>
-                        <td id="age-2"></td>
-                    </tr>
-                    <tr>
-                        <th>Nationality:</th>
-                        <td id="nationality-2">Portuguese</td>
-                    </tr>
-                    <tr>
-                        <th>Location:</th>
-                        <td id="location-2"></td>
-                    </tr>
-                    <tr>
-                        <th>Address:</th>
-                        <td id="lives-2"><a href="https://www.google.pt/maps/place/Braga/data=!4m2!3m1!1s0xd24febc6cf5d867:0xbc5d054162d1e218?sa=X&ved=0ahUKEwiQ1IKygaTcAhUJC-wKHZIiA2cQ8gEIJzAA">Braga</a></td>
-                    </tr>
-                    <tr>
-                        <th>Personal email (most recommended):</th>
-                        <td id="personalEmail-2"><a href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></td>
-                    </tr>
-                    <tr>
-                        <th>Institution email:</th>
-                        <td id="institutionEmail-2"><a href="mailto:a82880@alunos.uminho.pt">a82880@alunos.uminho.pt</a></td>
-                    </tr>
-                </table>
-            </div>
+        <nav class="row d-flex justify-content-center">
+            <a class="mr-2 mt-4 text-monospace" href="https://github.com/josepereira1">GitHub</a>
+            <p class="mr-2 mt-4 text-monospace"> | </p>
+            <a class="mr-2 mt-4 text-monospace" href="https://www.linkedin.com/in/joseandrepereira/">Linkedin</a>
+            <p class="mr-2 mt-4 text-monospace"> | </p>
+            <a class="mr-2 mt-4 text-monospace" href="https://www.credly.com/users/jose-pereira.cd4a4c21">Credly</a>
+            <p class="mr-2 mt-4 text-monospace"> | </p>
+            <a class="mt-4 text-monospace" href="https://stackoverflow.com/users/12980274/jos%c3%a9-pereira">StackExchange</a>
+        </nav>
+        <div class="row d-flex justify-content-center">
+            <h2 class="text-center pt-3">About me</h2>
+            <p class="text-monospace text-center">Welcome to my personal website, here you can find some information about me. My name is José Pereira, I am <span id="age"></span> years old, living in Portugal. Currently I am in fifth year of <a href="https://miei.di.uminho.pt">Integrated Master's, Software Engineering</a> course at <a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a> and working at the same time for the <a href="https://www.linkedin.com/company/devoteam/">Devoteam</a> as a Backend Developer.</p>
+            <p class="text-monospace text-center">My master degree is specialized in Application and Software Systemns Engineering. I am currently developing my dissertation based in microservices architectures, principles and patterns applied to an ecommerce problem.</p>
         </div>
-        <br>
-        <div id="projects">
-            <div class="row">
-                <div class="col s12">
-                    <h4 id="message" class="center">Projects</h4>
-                    <h6 id="message" class="center">(github repositories, can choose the ordering method)</h6>
-                    <div class="row center">
-                        <button onclick="loadProjects('created')" type="button" class="btn btn-primary">CREATION DATE</button> 
-                        <button onclick="loadProjects('full_name')" type="button" class="btn btn-primary">NAME</button>
-                        <button onclick="loadProjects('updated')" type="button" class="btn btn-primary">UPDATE DATE</button>
-                    </div>
-                    <table id="projectsTable" class="centered highlight">
-                        <thead>
-                            <tr>
-                                <th style="width: 30%">Name</th>
-                                <th style="width: 15%">Created</th>
-                                <th style="width: 15%">Last update</th>
-                                <th style="width: 20%">Language (most used)</th>
-                                <th style="width: 20%"></th>
-                            </tr>
-                        </thead>
-                        <tbody id="projectTableContent">
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="row">
-                <div class="center-align">
-                <ul id="pagination" class="pagination">
-                </ul>
-                </div>
-            </div>
+        <div class="row d-flex justify-content-center">
+            <h4 id="message" class="center">Projects</h4>
         </div>
-        
-        <br>
-        
-        <div class="row">
-            <h4 class="center">Educational</h4>
-            <table class="centered highlight">
+        <div class="row d-flex justify-content-center">
+            <h6 id="message" class="center">(personal and academic projects from github repositories, can choose the ordering method)</h6>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <button onclick="loadProjects('created')" type="button" class="btn btn-primary mr-2">CREATION DATE</button> 
+            <button onclick="loadProjects('full_name')" type="button" class="btn btn-primary mr-2">NAME</button>
+            <button onclick="loadProjects('updated')" type="button" class="btn btn-primary mr-2">UPDATE DATE</button>
+        </div>
+        <div class="row col s12">
+            <table id="projectsTable" class="table mt-5">
                 <thead>
                     <tr>
-                        <th>Course</th>
-                        <th>Institution</th>
-                        <th>Actual year</th>
-                        <th>Dates</th>
+                        <th class="text-center" style="width: 30%">Name</th>
+                        <th class="text-center" style="width: 15%">Created</th>
+                        <th class="text-center" style="width: 15%">Last update</th>
+                        <th class="text-center" style="width: 20%">Language (most used)</th>
+                        <th class="text-center" style="width: 20%">Download</th>
                     </tr>
                 </thead>
+                <tbody id="projectTableContent">
 
-                <tbody>
-                  
-                    <tr>
-                        <td><a href="https://miei.di.uminho.pt">Integrated Master's, Computer Software Engineering</a></td>
-                        <td><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
-                        <td>5th</td>
-                        <td>2016 to 2021</td>
-                    </tr>
-                  
-                    <tr>
-                        <td>Master degree on <a href="https://miei.di.uminho.pt/plano_estudos.html#engenharia_de_aplicacoes">Application Engineering</a> and <a href="https://miei.di.uminho.pt/plano_estudos.html#engenharia_de_sistemas_de_software">Software Systems Engineering</a></td>
-                        <td><a href="https://www.uminho.pt/EN/Pages/default.aspx">University of Minho</a></td>
-                        <td>2st</td>
-                        <td>2019 to 2022</td>
-                    </tr>
-                  
                 </tbody>
             </table>
         </div>
-        
-        <br><br>
-
-        <div class="row">
-            <h4 class="center">Events</h4>
-            <table class="centered highlight">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td><a href="https://heartbits.pt">Hackathon Heartbits</a></td>
-                        <td>2017</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="https://www.facebook.com/SEI.UMinho/">SEI - Semana da Engenharia Informática</a></td>
-                        <td>2017 to 2019</td>
-                    </tr>
-                  
-                    <tr>
-                        <td><a href="https://www.accenture.com/pt-pt/careers/form-techxperience">TechXperience on Accenture</a></td>
-                        <td>2019</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://enei.pt/">ENEI - Encontro Nacional de Engenharia Informática</a></td>
-                        <td>2020</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row d-flex justify-content-center">
+            <ul id="pagination" class="pagination"></ul>
         </div>
-
-    <br><br>
-
-    <div class="row">
-            <h4 class="center">Volunteer experience</h4>
-            <table class="centered highlight">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr>
-                        <td><a href="https://br.linkedin.com/company/refood-braga-100-">REFOOD Braga 100%</a></td>
-                        <td>Student Volunteer</td>
-                        <td>2020</td>
-                    </tr>
-                    
-                    <tr>
-                        <td><a href="https://enei.pt/">ENEI - Braga</a></td>
-                        <td>STAFF</td>
-                        <td>2020</td>
-                    </tr>
-                </tbody>
-            </table>
     </div>
-</div>
+
+    <!-- Optional JavaScript -->
+
+    <!-- jquery library CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- loadit libraries (https://github.com/bakincode/loadit) -->
+    <script type="text/javascript" src="js/loadit-js/app.js"></script>
+    <script type="text/javascript" src="js/loadit-js/projects-content.js"></script>
+    <script type="text/javascript" src="js/loadit-js/projects-pagination.js"></script>
+    <script type="text/javascript" src="js/loadit-js/projects-table.js"></script>
+    <script type="text/javascript" src="js/loadit-js/utils.js"></script>
+    <script type="text/javascript" src="js/loadit-js/variables.js"></script>
+
+    <!-- other stuff -->
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
-<br><br>
-<footer class="page-footer blue-grey darken-2">
-    <div class="container">
-        <div class="row center">
-            <div id="contacts"> <!-- class="col l5 s12" se precisar de encostar à esquerda -->
-                <h5 class="white-text">Contacts</h5>
-                    <li class="white-text">Email: <a class="white-text" href="mailto:joseandremp@gmail.com">joseandremp@gmail.com</a></li>
-                    <li>More info: <a class="white-text" href="https://www.linkedin.com/in/jos%C3%A9-pereira-b18750164/">LinkedIn</a></li>
-                    <li>Projects: <a class="white-text" href="https://github.com/josepereira1">GitHub</a></li>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footerclass footer-copyright blue-grey darken-4">
-        <div class="container center">© 2021 Copyright José Pereira</div>
-    </div>
-
-</footer>
-
-
-    <!--  Scripts-->
-    
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="bootstrap-4.3.1/js/jquery-3.3.1.js"></script>
-    <script src="bootstrap-4.3.1/js/popper.min.js"></script>
-    <script src="bootstrap-4.3.1/js/bootstrap.js"></script>
-
-
-    <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>-->
-    <script src="js/materialize.js"></script>
-    <script src="js/init.js"></script>
-    
-    <script>document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var instances = M.Sidenav.init(elems);
-    });
-
-    // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-    // var collapsibleElem = document.querySelector('.collapsible');
-    // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-    // Or with jQuery
-
-    $(document).ready(function(){
-        $('.sidenav').sidenav();
-    });
-    </script>
-
-    <script src="js/app.js"></script>
 </html>
